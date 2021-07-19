@@ -1,0 +1,50 @@
+Is literally anything working? In WSL:
+
+    ping 1.1.1.1
+
+If it's working the output should look something like this:
+
+    % ping 1.1.1.1
+    PING 1.1.1.1 (1.1.1.1) 56(84) bytes of data.
+    64 bytes from 1.1.1.1: icmp_seq=1 ttl=53 time=10.7 ms
+    64 bytes from 1.1.1.1: icmp_seq=2 ttl=53 time=10.9 ms
+    64 bytes from 1.1.1.1: icmp_seq=3 ttl=53 time=10.7 ms
+    ^C
+    --- 1.1.1.1 ping statistics ---
+    3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+    rtt min/avg/max/mdev = 10.731/10.795/10.915/0.084 ms
+
+If pinging an IP doesn't work, could be bad adapter settings. Disable and
+re-enable the WSL Windows optional feature to reset network settings and give
+it another try. This will not delete distro data.
+
+ 1. If WSL has been used this boot, run `wsl --shutdown` in cmd or powershell
+ 2. Control Panel > "Programs" > "Turn Windows features on or off" > Uncheck
+    "Windows Subsystem for Linux"
+ 3. Reboot when prompted
+ 4. Navigate to the same place and re-enable the feature
+ 5. Reboot again when prompted
+ 6. Do another ping test in a WSL window
+
+If pinging an IP works, is DNS bad? In WSL:
+
+    ping example.com
+
+Should give similar output to above. If not, try telling WSL to use a different
+nameserver.
+
+ 1. Drop this configuration in `/etc/wsl.conf` to prevent WSL from generating
+    its own `resolv.conf` file, allowing us to set the nameservers manually:
+
+        [network]
+        generateResolvConf = false
+
+ 2. Drop a `nameserver` line in `/etc/resolv.conf` to set the DNS server (you
+    may have to `rm /etc/wsl.conf` first):
+
+        nameserver 1.1.1.1
+        nameserver 1.0.0.1
+
+More information: https://github.com/microsoft/WSL/issues/4285
+
+-------------------------------------------------------------------------------

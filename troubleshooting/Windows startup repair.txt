@@ -1,0 +1,29 @@
+Enter the recovery environment and use the "Command Prompt" troubleshooting
+option. Assuming the Windows volume has drive letter E (not guaranteed to be C
+like normal) and recovery volume has drive letter X.
+
+Verify the disk is okay:
+
+   chkdsk E:
+
+Verify Windows system files are okay:
+
+    sfc /scannow /offbootdir=E:\ /offwindir=E:\Windows
+
+Recreate boot files:
+
+    bcdboot E:\Windows
+
+Check for Windows installations:
+
+    bootrec /ScanOs
+
+If you're out of options, check bootrec help and try an option that makes
+sense:
+
+    bootrec /?
+
+You can't run explorer in the recovery environment, but you can run notepad and
+use the "Open" menu item like an explorer window.
+
+-------------------------------------------------------------------------------
