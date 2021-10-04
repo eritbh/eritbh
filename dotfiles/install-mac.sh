@@ -21,10 +21,11 @@ curl -o- -L https://yarnpkg.com/install.sh | bash
 brew install thefuck
 
 # Set up git config and aliases
-git config --global user.name "George"
-git config --global user.email "georgej1088@gmail.com"
+git config --global user.name "Erin"
+git config --global user.email "erin20913@gmail.com"
 git config --global credential.helper osxkeychain # Cache remote credentials
 git config --global alias.l "log --oneline --decorate --graph"
+git config --global alias.la "log --oneline --decorate --graph --all"
 git config --global pull.rebase true
 
 # Copy .zshrc
