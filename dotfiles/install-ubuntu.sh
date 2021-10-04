@@ -18,6 +18,7 @@ yarn --version
 # Set up git config and aliases
 git config --global alias.l "log --oneline --decorate --graph"
 git config --global alias.la "log --oneline --decorate --graph --all"
+git config --global pull.rebase true
 
 # Install zsh and stuff
 sudo apt install zsh -y

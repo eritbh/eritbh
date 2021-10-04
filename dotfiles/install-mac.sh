@@ -25,6 +25,7 @@ git config --global user.name "George"
 git config --global user.email "georgej1088@gmail.com"
 git config --global credential.helper osxkeychain # Cache remote credentials
 git config --global alias.l "log --oneline --decorate --graph"
+git config --global pull.rebase true
 
 # Copy .zshrc
 curl https://raw.githubusercontent.com/Geo1088/dotfiles/master/.zshrc > ~/.zshrc
