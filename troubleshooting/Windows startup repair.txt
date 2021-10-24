@@ -10,6 +10,10 @@ Verify Windows system files are okay:
 
     sfc /scannow /offbootdir=E:\ /offwindir=E:\Windows
 
+Restore Windows system files online if they're not okay and sfc doesn't help:
+
+    dism /Online /Cleanup-image /Restorehealth
+
 Recreate boot files:
 
     bcdboot E:\Windows
