@@ -10,7 +10,7 @@ setopt PROMPT_SUBST
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' -e 's/((/(/' -e 's/))/)/'
 }
-export PS1='%B%F{green}%m%f %F{blue}%n%f %F{green}%~%f%b$(parse_git_branch) %B%(?.%#.%F{magenta}%#%f) '
+export PS1='%B%F{green}%m%f %F{blue}%n%f %F{green}%~%f%b$(parse_git_branch) %B%(?.%#.%F{magenta}%#%f)%b '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
