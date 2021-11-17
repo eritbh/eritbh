@@ -1,7 +1,26 @@
-# zsh history stuff
-export HISTSIZE=10000
-export SAVEHIST=10000
-export HISTFILE=~/.zsh_history
+# Completion settings
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' format '%B%U%d%u%b'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' insert-unambiguous true
+zstyle ':completion:*' list-colors ${(@s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list '+' '+m:{[:lower:]}={[:upper:]}' '+r:|[._-]=** r:|=**' '+'
+zstyle ':completion:*' max-errors 3
+zstyle ':completion:*' menu select=0 yes=0
+zstyle ':completion:*' select-prompt '%SScroll to view more completions (%l, %p)%s'
+zstyle ':completion:*' verbose true
+zstyle :compinstall filename '/home/erin/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+# History management
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 
@@ -34,6 +53,5 @@ export NVM_DIR="$HOME/.nvm"
 # User program: add yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# User program: thefuck alias
-#eval "$(thefuck --alias --enable-experimental-instant-mode)"
-#export THEFUCK_REQUIRE_CONFIRMATION='false'
+# User program: local binaries
+export PATH="$HOME/.local/bin:$PATH"
