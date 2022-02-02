@@ -20,38 +20,113 @@ compinit
 # History management
 HISTSIZE=1000
 SAVEHIST=1000
-HISTFILE=~/.zsh_history
+HISTFILE="$HOME/.zhistory"
 setopt INC_APPEND_HISTORY
 setopt HIST_IGNORE_DUPS
 
-# Prompt configuration
-setopt PROMPT_SUBST
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' -e 's/((/(/' -e 's/))/)/'
-}
-export PS1='%B%F{green}%m%f %F{blue}%n%f %F{green}%~%f%b$(parse_git_branch) %B%(?.%#.%F{magenta}%#%f)%b '
+# If on WSL, define DISPLAY with the local system address from /etc/resolv.conf
+# to enable GUI applications via an X server running under Windows
+if [ -n "$WSL_DISTRO_NAME" ]; then
+    export DISPLAY="$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0"
+fi
 
-# enable color support of ls and also add handy aliases
+# Aliases for color support
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+    alias diff='diff --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -a'
+# Functional aliases
+alias ll='ls -laF'
+alias la='ls -aF'
 alias l='ls -CF'
+alias clip='xclip -selection clipboard'
+alias copy='clip'
+
+# Prompt stuff
+setopt PROMPT_SUBST
+
+# Detect if the current session is running on a remote server
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    is_remote=1
+else
+    is_remote=
+fi
+
+# Function to get the current branch name
+function parse_git_branch {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/' -e 's/((/(/' -e 's/))/)/'
+}
+
+# Set the main prompt to show hostname if connected remotely + git branch
+export PROMPT="%B$([ -n "$is_remote" ] && echo "%F{blue}%m%f ")%F{#DDACFF}%n%f %F{blue}%~%f%b\$(parse_git_branch) %B%#%b "
+
+# Hook preexec/precmd to dynamically set rprompt with useful info
+function preexec {
+    # Store command execution start time
+    timer="${timer:-"$(date +%s.%N)"}"
+}
+function precmd {
+    # Start with a fresh prompt
+    RPROMPT=""
+    if [ -z $new_session ]; then
+        # If this is the first prompt in a session, there's nothing much to say
+        RPROMPT="%B%F{cyan}new session%f%b"
+        new_session=1
+    else
+        # Show exit code + more info about the last command run
+        RPROMPT="exited %B%(?.%F{green}%?%f.%F{red}%?%f)%b"
+        if [ -z $timer ]; then
+            # If we never set $timer, preexec was never run (e.g. ^C at prompt)
+            RPROMPT="%B%F{cyan}no exec%f%b, $RPROMPT"
+        else
+            # Calculate elapsed real time for last command
+            now="$(date +%s.%N)"
+            if [[ $(($now - $timer)) > 0.5 ]]; then
+                timer_show=$(($now - $timer))
+                timer_show=$(printf '%.*f\n' 3 $timer_show)
+                RPROMPT="took %B%F{cyan}${timer_show}s%f%b, $RPROMPT"
+            fi
+        fi
+    fi
+
+    # add current time and collapse it if we're out of room
+    RPROMPT="%<#<$RPROMPT at %D{%T}"
+
+    # that's an RPROMPT!
+    export RPROMPT
+
+    # always unset $timer for the next run
+    unset timer
+}
+preexec_functions+=preexec
+precmd_functions+=precmd
+
+# mostly just adding stuff to $PATH now
 
 # User program: add node version manager
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# User program: add rbenv
+eval "$(rbenv init -)"
+
+# User program: add ~/.local/bin/*
+export PATH="$PATH:$HOME/.local/bin"
+
+# User program: add dart sass
+export PATH="$PATH:$HOME/.local/bin/dart-sass"
+
 # User program: add yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-# User program: local binaries
-export PATH="$HOME/.local/bin:$PATH"
+# User program: add 1password SSH utils
+export PATH="$HOME/.1password-ssh-utils/bin:$PATH"
+alias ssh="op-ssh-fetch -n && ssh"
