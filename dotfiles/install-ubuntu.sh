@@ -22,5 +22,5 @@ git config --global pull.rebase true
 
 # Install zsh and stuff
 sudo apt install zsh -y
-curl https://raw.githubusercontent.com/Geo1088/dotfiles/master/.zshrc > ~/.zshrc
+curl https://raw.githubusercontent.com/eritbh/eritbh/main/dotfiles/.zshrc > ~/.zshrc
 echo 'Run `chsh -s /bin/zsh` to set your login shell.'
