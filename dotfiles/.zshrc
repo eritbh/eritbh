@@ -65,7 +65,7 @@ function parse_git_branch {
 }
 
 # Set the main prompt to show hostname if connected remotely + git branch
-export PROMPT="%B$([ -n "$is_remote" ] && echo "%F{blue}%m%f ")%F{#DDACFF}%n%f %F{blue}%~%f%b\$(parse_git_branch) %B%#%b "
+export PROMPT="%B$([ -n "$is_remote" ] && echo "%F{blue}%m%f ")%F{cyan}%n%f %F{blue}%~%f%b\$(parse_git_branch) %B%#%b "
 
 # Hook preexec/precmd to dynamically set rprompt with useful info
 function preexec {
@@ -76,7 +76,7 @@ function precmd {
     # Start with a fresh prompt
     RPROMPT=""
     if [ -z $new_session ]; then
-        # If this is the first prompt in a session, there's nothing much to say
+        # If this is the first prompt in a session, there's not much to say
         RPROMPT="%B%F{cyan}new session%f%b"
         new_session=1
     else
@@ -96,8 +96,8 @@ function precmd {
         fi
     fi
 
-    # add current time and collapse it if we're out of room
-    RPROMPT="%<#<$RPROMPT at %D{%T}"
+    # add current time, including timezone if remote, and collapse it if we're out of room
+    RPROMPT="%<#<$RPROMPT at %D{%T$([ -n "$is_remote" ] && echo ' %Z')}"
 
     # that's an RPROMPT!
     export RPROMPT
@@ -114,9 +114,6 @@ precmd_functions+=precmd
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# User program: add rbenv
-eval "$(rbenv init -)"
 
 # User program: add ~/.local/bin/*
 export PATH="$PATH:$HOME/.local/bin"
