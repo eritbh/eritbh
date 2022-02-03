@@ -16,6 +16,8 @@ sudo apt install --no-install-recommends yarn -y
 yarn --version
 
 # Set up git config and aliases
+git config --global user.name Erin
+git config --global user.email github@eritbh.me
 git config --global alias.l "log --oneline --decorate --graph"
 git config --global alias.la "log --oneline --decorate --graph --all"
 git config --global pull.rebase true
