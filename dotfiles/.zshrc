@@ -43,9 +43,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # Functional aliases
-alias ll='ls -laF'
-alias la='ls -aF'
-alias l='ls -CF'
+alias ll='ls -laFh'
+alias la='ls -aFh'
+alias l='ls -CFh'
 alias clip='xclip -selection clipboard'
 alias copy='clip'
 
