@@ -1,6 +1,6 @@
 # initial update
 sudo apt update
-sudo apt upgrade
+sudo apt upgrade -y
 
 # Install git and cURL
 sudo apt install git curl -y
