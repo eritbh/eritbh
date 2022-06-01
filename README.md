@@ -7,4 +7,25 @@
 [![npm: eritbh](https://img.shields.io/badge/-npm-CB3837?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAMAAADyHTlpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURf///wAAAFXC034AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAACxJREFUSEtjYCQa0E4pAxFgVCmdlQIFIQDKH1U6qnRU6ahSGislEtBCKSMjABeUAshtayE4AAAAAElFTkSuQmCC)](https://www.npmjs.com/~eritbh)
 [![donate on github sponsors](https://img.shields.io/badge/-sponsor-EA4AAA?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/eritbh)
 [![donate on ko-fi](https://img.shields.io/badge/-donate-FF5E5B?logo=ko-fi&logoColor=white)](https://ko-fi.com/eritbh)
-![](https://i.eritbh.me/gYyyeT8vpL2fv.png) <!-- alignment -->
+![](1x24-transparent.png)
+
+<!--
+
+that last bit is a 1x24px transparent image for perfectly centering the badges
+relative to the umbreon image. let's break it down:
+
+the umbreon image is 60px tall, and badges are 20px tall. so the vertical
+margin on each side of the badges should be (60px - 20px) / 2, or 20px.also,
+the umbreon image is in its own paragraph, and <p> elements have 16px of bottom
+margin on github - this pushes the badges down by 16px already. so we need to
+move the paragraph with the badges down another 4px to get our target of 20px
+vertical margin. the way we do that is by inserting an image taller than a
+badge by 4 pixels. multiple inline images in a single paragraph will align
+themselves to the baseline by default; that is, if you have multiple images of
+different heights in the same paragraph, the images will all align their bottom
+edges. this is useful because the paragraph will make itself tall enough to
+accomodate the largest image on the line, so if we insert an element into the
+paragraph that is 4px taller than the badges, then we effectively move all the
+badges down by 4 pixels. the actual height of the image, then, is 20px + 4px.
+
+-->
