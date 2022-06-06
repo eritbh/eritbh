@@ -1,9 +1,0 @@
-macOS not letting you run a script because you downloaded it through a browser
-like a damn fool?
-
-    xattrs -c <file>
-
-will remove the extended attributes macOS creates on downloaded files, clearing
-the web quarantine and letting you run the file again.
-
--------------------------------------------------------------------------------
