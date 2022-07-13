@@ -1,4 +1,7 @@
-<img align="left" width="60" alt="Pixel art of a shiny Umbreon doing a run" src="https://eritbh.me/assets/umbreon.png" srcset="https://eritbh.me/assets/umbreon-2x.png 3x">
+<p><picture>
+  <source srcset="https://eritbh.me/assets/umbreon-2x.png 2x,https://eritbh.me/assets/umbreon.png" media="(prefers-reduced-motion: reduce)">
+  <img align="left" width="60" alt="Pixel art of a shiny Umbreon doing a run" src="https://eritbh.me/assets/umbreon.gif" srcset="https://eritbh.me/assets/umbreon-2x.gif 2x">
+</picture></p>
 
 [![pronouns: she/her](https://img.shields.io/badge/-she/her-b447ff)](https://pronoun.is/she)
 [![site: eritbh.me](https://img.shields.io/badge/-website-3cc76d?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsIAAA7CARUoSoAAAAIZSURBVFhH1de9axRBHMbxy5mAiBhEUIhY2WmCBhQUSSUKFsFKsLFNowT/gNTaitiIhY0IKljYWSgE7ETESgkWWoSQaGF8IWcSc36fmZ3jnIy385tTxAc+mZl9m7nZvb1Jo91ux85iEb/LPM4gda7ZgP5U2YVX2Ota9VnGMbxxrcI0q/I0PiC3c2UYr3HBtUrDDBxFvzmHTdObQ7fgG+PY5odTnDVsx6prGaJb0G/nyhBu+6otmgGNfhFXsRMTOIUBWKLrbMWGa+WGATTD/egyhOewZhzxtXrSLUiNWJ/meFVacr4qsxO+hqms44GvZudkVWan1wCUG1WZG73M6qJjJn21fgAHqjI3X6uyV17iEQ65VurB6LIAS+4gdZ3gLkJW0NTGW9iH+OBpWHMC8XWC+4hzTTtCWniCm3inDcZ8h/txS7iCZLTzT+Ui4o6DS0ilpZ2Pfb2vaMbiTmP30J0NjGqH3oRL2lIYPahbEHcY0+0Jb9cfOIzOt2AQb2HNHHI6D/RhZzAStsUHXMY66rKKKcTnm6U2ajYmMYsvUGdr+ISHOILUeUW614T/JHWv4r+e/3YAWv8t4aBr9ZGSZ0BLtQXsgRYsO9BCUawzoM5fQJ0rWoy+h3X92Il1AHMY99VOduO6r9pjvQXzGPHVX7KCouW9dQb8KmZz9K9dUawD+IhpX3XR9I3imWsVpPRN+BT7MYbP2lCWRuMnK/Z5dIb/Cw8AAAAASUVORK5CYII=)](https://eritbh.me)
