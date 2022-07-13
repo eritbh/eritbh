@@ -1,6 +1,6 @@
 <p><picture>
-  <source srcset="https://eritbh.me/assets/umbreon-2x.png 2x,https://eritbh.me/assets/umbreon.png" media="(prefers-reduced-motion: reduce)">
-  <img align="left" width="60" alt="Pixel art of a shiny Umbreon doing a run" src="https://eritbh.me/assets/umbreon.gif" srcset="https://eritbh.me/assets/umbreon-2x.gif 2x">
+  <source srcset="https://eritbh.me/assets/umbreon.png" media="(prefers-reduced-motion: reduce)">
+  <img align="left" width="60" alt="Pixel art of a shiny Umbreon doing a run" src="https://eritbh.me/assets/umbreon.gif">
 </picture></p>
 
 [![pronouns: she/her](https://img.shields.io/badge/-she/her-b447ff)](https://pronoun.is/she)
